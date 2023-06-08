@@ -1,6 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import { ethers } from 'ethers';
+import { storeMeta } from './service/ipfs-service';
 
 function App() {
   const connect = async () => {
@@ -9,9 +10,18 @@ function App() {
     const signer = provider.getSigner();
   }
 
+  const connectIpfs = async () => {
+    await storeMeta({name: "test", age: 18})
+  }
+
   return (
-    <div className="App">
-      <button onClick={connect}>Connect Wallet</button>
+    <div>
+      <div className="App">
+        <button onClick={connect}>Connect Wallet</button>
+      </div>
+      <div>
+        <button onClick={connectIpfs}>Store Meta</button>
+      </div>
     </div>
   );
 }
